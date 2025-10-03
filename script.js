@@ -1,3 +1,8 @@
+// Initialize EmailJS
+(function () {
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+})();
+
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
@@ -48,25 +53,42 @@ document.addEventListener('DOMContentLoaded', function () {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            // Simulate form submission (replace with actual backend integration)
-            setTimeout(() => {
-                // Success state
-                submitBtn.textContent = 'Message Sent ✓';
-                submitBtn.style.background = '#059669';
+            // Send email using EmailJS
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                from_name: data.name,
+                from_email: data.email,
+                company: data.company || 'Not provided',
+                message: data.message || 'No message provided',
+                to_email: 'parker@glassriver.net'
+            })
+                .then(() => {
+                    // Success state
+                    submitBtn.textContent = 'Message Sent ✓';
+                    submitBtn.style.background = '#059669';
 
-                // Clear form
-                this.reset();
+                    // Clear form
+                    this.reset();
 
-                // Reset button after a few seconds
-                setTimeout(() => {
+                    // Reset button after a few seconds
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                    }, 3000);
+
+                    // Show success message
+                    showNotification('Thank you for your interest. We\'ll be in touch soon.', 'success');
+                })
+                .catch((error) => {
+                    console.error('Email sending failed:', error);
+
+                    // Reset button on error
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
-                    submitBtn.style.background = '';
-                }, 3000);
 
-                // Show success message
-                showNotification('Thank you for your interest. We\'ll be in touch soon.', 'success');
-            }, 1500);
+                    // Show error message
+                    showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
+                });
         });
     }
 
@@ -125,7 +147,7 @@ function showNotification(message, type = 'info') {
         position: 'fixed',
         top: '100px',
         right: '20px',
-        background: type === 'success' ? '#059669' : '#3b82f6',
+        background: type === 'success' ? '#059669' : type === 'error' ? '#dc2626' : '#3b82f6',
         color: 'white',
         padding: '1rem 1.5rem',
         borderRadius: '8px',
