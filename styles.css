@@ -378,6 +378,7 @@ section {
     transition: all 0.3s ease;
     box-shadow: var(--shadow-sm);
     position: relative;
+    overflow: hidden;
 }
 
 .platform-card::before {
@@ -389,6 +390,7 @@ section {
     height: 3px;
     background: linear-gradient(90deg, var(--primary-color), var(--blue-primary));
     border-radius: 12px 12px 0 0;
+    overflow: hidden;
 }
 
 .platform-card:hover {
@@ -458,6 +460,7 @@ section {
     border: 1px solid var(--border-accent);
     box-shadow: var(--shadow-lg);
     position: relative;
+    overflow: hidden;
 }
 
 .contact-form-container::before {
@@ -469,6 +472,7 @@ section {
     height: 4px;
     background: linear-gradient(90deg, var(--primary-color), var(--blue-primary));
     border-radius: 16px 16px 0 0;
+    overflow: hidden;
 }
 
 .form-group {
