@@ -1,6 +1,6 @@
 // Initialize EmailJS
 (function () {
-    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+    emailjs.init("gJS6r5ubdivSK_Usa"); // Replace with your EmailJS public key
 })();
 
 // Smooth scrolling for navigation links
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
             submitBtn.disabled = true;
 
             // Send email using EmailJS
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            emailjs.send('service_cn53bwr', 'template_p2uppyg', {
                 from_name: data.name,
                 from_email: data.email,
                 company: data.company || 'Not provided',
