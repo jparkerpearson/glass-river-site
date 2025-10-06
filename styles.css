@@ -622,7 +622,7 @@ section {
     }
 
     .nav-links {
-        gap: 1rem;
+        display: none;
     }
 
     .section-content {
