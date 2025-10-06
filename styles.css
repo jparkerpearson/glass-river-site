@@ -461,6 +461,8 @@ section {
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .contact-form-container::before {
@@ -473,6 +475,12 @@ section {
     background: linear-gradient(90deg, var(--primary-color), var(--blue-primary));
     border-radius: 16px 16px 0 0;
     overflow: hidden;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -491,6 +499,9 @@ section {
     font-size: 0.95rem;
     transition: all 0.3s ease;
     font-family: inherit;
+    resize: none;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group input::placeholder,
