@@ -361,6 +361,67 @@ section {
     line-height: 1.6;
 }
 
+/* Carrier benefits section */
+.carrier-benefits {
+    background: white;
+    border-top: 1px solid var(--border-accent);
+    border-bottom: 1px solid var(--border-accent);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.benefit-card {
+    background: linear-gradient(135deg, var(--slate-50) 0%, var(--indigo-50) 100%);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-accent);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--blue-primary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.benefit-card:hover::before {
+    opacity: 1;
+}
+
+.benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.benefit-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.benefit-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
 /* Integrations section */
 .platforms-showcase {
     display: grid;
@@ -646,6 +707,10 @@ section {
     }
 
     .platforms-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
         grid-template-columns: 1fr;
     }
 
