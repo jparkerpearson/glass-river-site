@@ -176,6 +176,7 @@ body {
     padding: 0.5rem 0;
 }
 
+
 .nav-dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
@@ -865,7 +866,24 @@ section {
     }
 
     .nav-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    /* Hide non-dropdown nav items on mobile */
+    .nav-links .nav-link:not(.dropdown-toggle) {
         display: none;
+    }
+
+    /* Mobile dropdown positioning */
+    .dropdown-menu {
+        position: fixed;
+        top: 80px;
+        left: 1rem;
+        right: 1rem;
+        min-width: auto;
+        width: calc(100% - 2rem);
+        max-width: none;
     }
 
     .section-content {
