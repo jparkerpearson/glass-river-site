@@ -25,6 +25,47 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Handle dropdown functionality
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    if (dropdownToggle && dropdownMenu) {
+        // Prevent dropdown toggle from navigating
+        dropdownToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+        });
+
+        // Handle dropdown visibility with better CSS integration
+        let isDropdownOpen = false;
+
+        // Show dropdown on hover
+        dropdownToggle.addEventListener('mouseenter', function () {
+            isDropdownOpen = true;
+            dropdownMenu.style.opacity = '1';
+            dropdownMenu.style.visibility = 'visible';
+            dropdownMenu.style.transform = 'translateY(0)';
+        });
+
+        // Hide dropdown when mouse leaves the dropdown area
+        const dropdownContainer = document.querySelector('.nav-dropdown');
+        dropdownContainer.addEventListener('mouseleave', function () {
+            isDropdownOpen = false;
+            dropdownMenu.style.opacity = '0';
+            dropdownMenu.style.visibility = 'hidden';
+            dropdownMenu.style.transform = 'translateY(-10px)';
+        });
+
+        // Close dropdown when clicking outside (but only if it's currently open)
+        document.addEventListener('click', function (e) {
+            if (isDropdownOpen && !dropdownContainer.contains(e.target)) {
+                isDropdownOpen = false;
+                dropdownMenu.style.opacity = '0';
+                dropdownMenu.style.visibility = 'hidden';
+                dropdownMenu.style.transform = 'translateY(-10px)';
+            }
+        });
+    }
+
     // Handle contact form submission
     const contactForm = document.getElementById('contactForm');
 
@@ -100,10 +141,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const navbar = document.querySelector('.navbar');
 
         if (currentScrollY > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            // Keep the glass effect but make it slightly more opaque
+            navbar.style.background = 'rgba(255, 255, 255, 0.2)';
+            navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.3)';
             navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+            navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
             navbar.style.boxShadow = '';
         }
 

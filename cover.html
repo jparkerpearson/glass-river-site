@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass River - Cover Photo</title>
+    <link rel="icon" type="image/png" href="assets/glassRiverLogoDark.png">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Source+Serif+Pro:wght@400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1a 0%, #1a2332 50%, #0f1419 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'EB Garamond', 'Cormorant Garamond', 'Source Serif Pro', serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle background pattern */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cover-container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+
+        .company-name {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(3.5rem, 9vw, 7rem);
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 0.08em;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+            position: relative;
+            font-style: normal;
+            text-transform: uppercase;
+        }
+
+        /* Elegant underline effect */
+
+
+        .tagline {
+            font-family: 'Source Serif Pro', serif;
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            line-height: 1.5;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        /* Subtle floating elements for elegance */
+        .floating-element {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+                opacity: 0.1;
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 0.3;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .cover-container {
+                padding: 1rem;
+            }
+
+            .company-name {
+                margin-bottom: 0.5rem;
+            }
+
+            .company-name::after {
+                width: 80px;
+                bottom: -0.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .company-name {
+                letter-spacing: 0.01em;
+            }
+
+            .tagline {
+                letter-spacing: 0.03em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating decorative elements -->
+
+    <div class="cover-container">
+        <h1 class="company-name">Glass River</h1>
+    </div>
+</body>
+
+</html>
