@@ -1,298 +1,45 @@
-// Initialize EmailJS
-(function () {
-    emailjs.init("gJS6r5ubdivSK_Usa"); // Replace with your EmailJS public key
-})();
-
-// Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function () {
-    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    const menuButton = document.querySelector('.menu-toggle');
+    const primaryNav = document.querySelector('.primary-nav');
+    const header = document.querySelector('.site-header');
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
+    if (menuButton && primaryNav) {
+        menuButton.addEventListener('click', function () {
+            const isOpen = primaryNav.classList.toggle('open');
+            menuButton.setAttribute('aria-expanded', String(isOpen));
+            menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        });
 
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
+        document.addEventListener('click', function (event) {
+            const clickedInsideMenu = primaryNav.contains(event.target);
+            const clickedToggle = menuButton.contains(event.target);
 
-            if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
-
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+            if (!clickedInsideMenu && !clickedToggle && primaryNav.classList.contains('open')) {
+                primaryNav.classList.remove('open');
+                menuButton.setAttribute('aria-expanded', 'false');
+                menuButton.setAttribute('aria-label', 'Open menu');
             }
         });
-    });
 
-    // Handle dropdown functionality
-    const dropdownToggle = document.querySelector('.dropdown-toggle');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
-
-    if (dropdownToggle && dropdownMenu) {
-        // Handle dropdown visibility with better CSS integration
-        let isDropdownOpen = false;
-        const dropdownContainer = document.querySelector('.nav-dropdown');
-
-        // Check if device is mobile/touch
-        const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
-
-        if (isMobile) {
-            // Mobile: Toggle dropdown on click
-            dropdownToggle.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                if (isDropdownOpen) {
-                    // Close dropdown
-                    isDropdownOpen = false;
-                    dropdownMenu.style.opacity = '0';
-                    dropdownMenu.style.visibility = 'hidden';
-                    dropdownMenu.style.transform = 'translateY(-10px)';
-                } else {
-                    // Open dropdown
-                    isDropdownOpen = true;
-                    dropdownMenu.style.opacity = '1';
-                    dropdownMenu.style.visibility = 'visible';
-                    dropdownMenu.style.transform = 'translateY(0)';
-                }
+        primaryNav.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                primaryNav.classList.remove('open');
+                menuButton.setAttribute('aria-expanded', 'false');
+                menuButton.setAttribute('aria-label', 'Open menu');
             });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function (e) {
-                if (isDropdownOpen && !dropdownContainer.contains(e.target)) {
-                    isDropdownOpen = false;
-                    dropdownMenu.style.opacity = '0';
-                    dropdownMenu.style.visibility = 'hidden';
-                    dropdownMenu.style.transform = 'translateY(-10px)';
-                }
-            });
-        } else {
-            // Desktop: Show dropdown on hover
-            dropdownToggle.addEventListener('mouseenter', function () {
-                isDropdownOpen = true;
-                dropdownMenu.style.opacity = '1';
-                dropdownMenu.style.visibility = 'visible';
-                dropdownMenu.style.transform = 'translateY(0)';
-            });
-
-            // Hide dropdown when mouse leaves the dropdown area
-            dropdownContainer.addEventListener('mouseleave', function () {
-                isDropdownOpen = false;
-                dropdownMenu.style.opacity = '0';
-                dropdownMenu.style.visibility = 'hidden';
-                dropdownMenu.style.transform = 'translateY(-10px)';
-            });
-
-            // Close dropdown when clicking outside (but only if it's currently open)
-            document.addEventListener('click', function (e) {
-                if (isDropdownOpen && !dropdownContainer.contains(e.target)) {
-                    isDropdownOpen = false;
-                    dropdownMenu.style.opacity = '0';
-                    dropdownMenu.style.visibility = 'hidden';
-                    dropdownMenu.style.transform = 'translateY(-10px)';
-                }
-            });
-        }
-    }
-
-    // Handle contact form submission
-    const contactForm = document.getElementById('contactForm');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Get form data
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                company: formData.get('company'),
-                message: formData.get('message')
-            };
-
-            // Simple validation
-            if (!data.name || !data.email) {
-                alert('Please fill in your name and email address.');
-                return;
-            }
-
-            // Show loading state
-            const submitBtn = this.querySelector('.btn-submit');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            // Send email using EmailJS
-            emailjs.send('service_cn53bwr', 'template_p2uppyg', {
-                from_name: data.name,
-                from_email: data.email,
-                company: data.company || 'Not provided',
-                message: data.message || 'No message provided',
-                to_email: 'parker@glassriver.net'
-            })
-                .then(() => {
-                    // Success state
-                    submitBtn.textContent = 'Message Sent ✓';
-                    submitBtn.style.background = '#059669';
-
-                    // Clear form
-                    this.reset();
-
-                    // Reset button after a few seconds
-                    setTimeout(() => {
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                        submitBtn.style.background = '';
-                    }, 3000);
-
-                    // Show success message
-                    showNotification('Thank you for your interest. We\'ll be in touch soon.', 'success');
-                })
-                .catch((error) => {
-                    console.error('Email sending failed:', error);
-
-                    // Reset button on error
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-
-                    // Show error message
-                    showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
-                });
         });
     }
 
-    // Add scroll effect to navbar
-    let lastScrollY = window.scrollY;
+    function handleHeaderScroll() {
+        if (!header) return;
 
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        const navbar = document.querySelector('.navbar');
-
-        if (currentScrollY > 100) {
-            // Keep the glass effect but make it slightly more opaque
-            navbar.style.background = 'rgba(255, 255, 255, 0.2)';
-            navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.3)';
-            navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
+        if (window.scrollY > 8) {
+            header.classList.add('scrolled');
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.1)';
-            navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
-            navbar.style.boxShadow = '';
+            header.classList.remove('scrolled');
         }
+    }
 
-        lastScrollY = currentScrollY;
-    });
-
-    // Animate feature cards on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe feature cards and platform cards
-    const animatedElements = document.querySelectorAll('.feature-card, .platform-card');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-});
-
-// Notification system
-function showNotification(message, type = 'info') {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-
-    // Style the notification
-    Object.assign(notification.style, {
-        position: 'fixed',
-        top: '100px',
-        right: '20px',
-        background: type === 'success' ? '#059669' : type === 'error' ? '#dc2626' : '#3b82f6',
-        color: 'white',
-        padding: '1rem 1.5rem',
-        borderRadius: '8px',
-        boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)',
-        zIndex: '9999',
-        opacity: '0',
-        transform: 'translateX(100%)',
-        transition: 'opacity 0.3s ease, transform 0.3s ease'
-    });
-
-    document.body.appendChild(notification);
-
-    // Animate in
-    setTimeout(() => {
-        notification.style.opacity = '1';
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-
-    // Remove after delay
-    setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    }, 4000);
-}
-
-// Add some interactive hover effects
-document.addEventListener('DOMContentLoaded', function () {
-    // Add ripple effect to buttons
-    const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .btn-submit');
-
-    buttons.forEach(button => {
-        button.addEventListener('click', function (e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY / rect.top - size / 2;
-
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.style.position = 'absolute';
-            ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-            ripple.style.transform = 'scale(0)';
-            ripple.style.animation = 'ripple 0.6s linear';
-
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-
-    // Add CSS for ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
+    handleHeaderScroll();
+    window.addEventListener('scroll', handleHeaderScroll);
 });

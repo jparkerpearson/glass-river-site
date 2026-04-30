@@ -4,144 +4,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glass River</title>
+    <title>Glass River Insurance Brokerage</title>
     <link rel="icon" type="image/png" href="assets/glassRiverLogoDark.png">
     <link rel="apple-touch-icon" href="assets/glassRiverLogoDark.png">
     <link rel="stylesheet" href="styles.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">
-                <span class="brand-text">Glass River</span>
+    <header class="site-header" id="top">
+        <div class="container nav-wrap">
+            <a href="#top" class="brand" aria-label="Glass River Insurance Brokerage Home">
+                <img src="assets/glassRiverLogoDark.png" alt="Glass River logo" class="brand-mark">
+                <span class="brand-wordmark">Glass River</span>
             </a>
-            <div class="nav-links">
-                <div class="nav-dropdown">
-                    <!-- <a href="#" class="nav-link dropdown-toggle">Products</a>
-                    <div class="dropdown-menu">
-                        <a href="products/data-extraction.html" class="dropdown-item">Document Extraction</a>
-                        <a href="products/bulk-submitter.html" class="dropdown-item">Automated Quoting</a>
-                        <a href="products/policy-comparison.html" class="dropdown-item">Compare Policies</a>
-                        <a href="products/submission-routing.html" class="dropdown-item">Optimized Routing</a>
-                        <a href="products/broker-ma-tools.html" class="dropdown-item">Streamline M&As</a>
-                    </div> -->
-                </div>
-                <a href="#integrations" class="nav-link">Integrations</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
+
+            <button class="menu-toggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="primary-nav" id="primaryNav">
+                <a href="#about">About</a>
+                <a href="#solutions">Insurance Solutions</a>
+                <a href="#industries">Industries</a>
+                <a href="#resources">Resources</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <a href="#contact" class="btn btn-primary header-cta">Get a Quote</a>
         </div>
-    </nav>
+    </header>
 
     <main>
-        <section class="hero">
-            <div class="video-container">
-                <video class="hero-video" autoplay muted loop playsinline>
-                    <source src="assets/161071-822582138_small.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-overlay"></div>
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">
-                            Transform insurance operations with intelligent automation
-                        </h1>
-                        <p class="hero-subtitle">
-                            Glass River delivers enterprise-grade automation solutions that eliminate operational
-                            inefficiencies,
-                            accelerate decision-making, and optimize workflows across the entire insurance lifecycle.
-                        </p>
-                        <div class="hero-cta">
-                            <a href="#contact" class="btn-primary">Schedule Consultation</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="integrations" class="integrations">
-            <div class="section-content">
-                <div class="platforms-showcase">
-                    <div class="platform-card">
-                        <div class="platform-logo">
-                            <img src="assets/appliedEpic.png" alt="Applied Epic Logo" class="platform-logo-img">
-                        </div>
-                        <p class="platform-description">
-                            Streamline regulatory compliance and eliminate manual data entry vulnerabilities.
-                            Accelerate processing cycles while maintaining absolute accuracy through intelligent
-                            automation.
-                        </p>
-                    </div>
-
-                    <div class="platform-card">
-                        <div class="platform-logo">
-                            <img src="assets/indio.png" alt="Indio Logo" class="platform-logo-img">
-                        </div>
-                        <p class="platform-description">
-                            Implement sophisticated fraud prevention protocols and automated certificate validation.
-                            Enhance operational efficiency through intelligent document verification and risk
-                            assessment.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <div class="section-content">
-                <div class="contact-intro">
-                    <h2 class="section-title">Ready to elevate your operational excellence?</h2>
-                    <p class="section-description">
-                        Schedule a strategic consultation to explore how Glass River can transform your
-                        operational efficiency and drive measurable business outcomes.
+        <section class="hero" id="about">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <div class="hero-copy">
+                    <h1>Clear Coverage.<br>Strong Relationships.</h1>
+                    <span class="sage-divider" aria-hidden="true"></span>
+                    <p>
+                        Glass River is an independent insurance brokerage focused on protecting what matters most to you.
                     </p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">Get a Quote</a>
+                        <a href="#solutions" class="btn btn-outline">Explore Solutions</a>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="contact-form-container">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your name" required>
-                            <label for="name">Name</label>
+        <section class="value-strip" aria-label="Core value propositions">
+            <div class="container value-grid">
+                <article class="value-item">
+                    <div class="item-title">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.2 8.7-7 10-3.8-1.3-7-5-7-10V6l7-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                        <h3>Independent Advice</h3>
+                    </div>
+                    <p>We work for you, not the insurance companies.</p>
+                </article>
+                <article class="value-item">
+                    <div class="item-title">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l8-14 8 14H4z"></path><path d="M12 21v-6"></path></svg>
+                        <h3>Customized Coverage</h3>
+                    </div>
+                    <p>Tailored solutions designed around your unique needs.</p>
+                </article>
+                <article class="value-item">
+                    <div class="item-title">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-4.4 7-11a7 7 0 0 0-14 0c0 6.6 7 11 7 11z"></path><path d="M9.5 11.5l1.7 1.7 3.3-3.3"></path></svg>
+                        <h3>Trusted Relationships</h3>
+                    </div>
+                    <p>Built on transparency, integrity, and long-term partnership.</p>
+                </article>
+                <article class="value-item">
+                    <div class="item-title">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19h18"></path><path d="M7 19V9l5-4 5 4v10"></path></svg>
+                        <h3>Local. Like You.</h3>
+                    </div>
+                    <p>Deep roots in our communities and a commitment to give back.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="solutions" id="solutions">
+            <div class="container">
+                <p class="section-kicker" id="industries">Insurance Solutions</p>
+                <h2>Solutions for What You Value</h2>
+                <p class="section-intro">
+                    We provide comprehensive insurance solutions for businesses, individuals, and everything in between.
+                </p>
+
+                <div class="solutions-grid" id="resources">
+                    <article class="solution-item">
+                        <div class="item-title">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V8l8-4 8 4v12"></path><path d="M9 20v-6h6v6"></path></svg>
+                            <h3>Business Insurance</h3>
                         </div>
-
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="your.email@company.com" required>
-                            <label for="email">Email address</label>
+                    </article>
+                    <article class="solution-item">
+                        <div class="item-title">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"></path><path d="M5 21V7h14v14"></path><path d="M8 10h2M12 10h2M8 14h2M12 14h2"></path></svg>
+                            <h3>Commercial Insurance</h3>
                         </div>
-
-                        <div class="form-group">
-                            <input type="text" id="company" name="company" placeholder="Your company">
-                            <label for="company">Company name</label>
+                    </article>
+                    <article class="solution-item">
+                        <div class="item-title">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 6v11H4V9l8-6z"></path><path d="M9 20v-6h6v6"></path></svg>
+                            <h3>Personal Insurance</h3>
                         </div>
-
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Tell us about your current challenges..."
-                                rows="4"></textarea>
-                            <label for="message">Message (optional)</label>
+                    </article>
+                    <article class="solution-item">
+                        <div class="item-title">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15h18"></path><path d="M6 15l1.5-5h9L18 15"></path><circle cx="8" cy="17.5" r="1.5"></circle><circle cx="16" cy="17.5" r="1.5"></circle></svg>
+                            <h3>Auto Insurance</h3>
                         </div>
-
-                        <button type="submit" class="btn-submit">Schedule</button>
-                    </form>
+                    </article>
+                    <article class="solution-item">
+                        <div class="item-title">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14l8-5 8 5"></path><path d="M6 14v5h12v-5"></path><path d="M12 9V5"></path></svg>
+                            <h3>General Liability Insurance</h3>
+                        </div>
+                    </article>
+                    <article class="solution-item">
+                        <div class="item-title">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-11a7 7 0 0 1 14 0c0 6.6-7 11-7 11z"></path><path d="M12 8v5"></path><path d="M9.5 10.5h5"></path></svg>
+                            <h3>Life &amp; Health Insurance</h3>
+                        </div>
+                    </article>
                 </div>
+            </div>
+        </section>
 
+        <section class="contact-band" id="contact">
+            <div class="container contact-band-wrap">
+                <h2>Built for long-term protection, not one-time policies.</h2>
+                <a href="#top" class="btn btn-primary">Get a Quote</a>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <span class="brand-text">Glass River</span>
-                <p class="footer-tagline">Enterprise-grade insurance automation solutions</p>
-            </div>
-            <div class="footer-info">
-                <p class="footer-text">© 2025 Glass River. All rights reserved.</p>
-                <p class="footer-text">Advancing the future of insurance operations through intelligent automation.</p>
-            </div>
+    <footer class="site-footer">
+        <div class="container footer-wrap">
+            <p>© 2026 Glass River Insurance Brokerage. All rights reserved.</p>
+            <p>Independent guidance. Strong coverage. Local partnership.</p>
         </div>
     </footer>
 
